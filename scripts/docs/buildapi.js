@@ -7,11 +7,17 @@
 
 'use strict';
 
+const path = require( 'path' );
+const ROOT_DIRECTORY = path.join( __dirname, '..', '..' );
+
 module.exports = function buildApiDocs() {
 	const ckeditor5Docs = require( '@ckeditor/ckeditor5-dev-docs' );
 
 	return ckeditor5Docs
 		.build( {
+			cwd: ROOT_DIRECTORY,
+			tsconfig: path.join( ROOT_DIRECTORY, 'tsconfig.docs.json' ),
+			outputPath: path.join( ROOT_DIRECTORY, 'docs', 'api', 'output.json' ),
 			// Patterns that do not start with '/' are mounted onto process.cwd() path by default.
 			readmePath: 'README.md',
 			sourceFiles: [

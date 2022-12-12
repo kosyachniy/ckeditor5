@@ -61,6 +61,7 @@ export default class TableEditing extends Plugin {
 		const editor = this.editor;
 		const model = editor.model;
 		const schema = model.schema;
+		const markers = model.markers;
 		const conversion = editor.conversion;
 		const tableUtils = editor.plugins.get( TableUtils );
 
@@ -130,12 +131,12 @@ export default class TableEditing extends Plugin {
 		// Duplicates code - needed to properly refresh paragraph inside a table cell.
 		conversion.for( 'editingDowncast' ).elementToElement( {
 			model: 'paragraph',
-			view: convertParagraphInTableCell( { asWidget: true } ),
+			view: convertParagraphInTableCell( { asWidget: true, markers } ),
 			converterPriority: 'high'
 		} );
 		conversion.for( 'dataDowncast' ).elementToElement( {
 			model: 'paragraph',
-			view: convertParagraphInTableCell(),
+			view: convertParagraphInTableCell( { asWidget: false, markers } ),
 			converterPriority: 'high'
 		} );
 

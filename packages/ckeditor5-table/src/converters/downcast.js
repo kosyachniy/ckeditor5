@@ -113,7 +113,7 @@ export function downcastCell( options = {} ) {
  * @param {Boolean} [options.asWidget] If set to `true`, the downcast conversion will produce a widget.
  * @returns {Function} Element creator.
  */
-export function convertParagraphInTableCell( options = {} ) {
+export function convertParagraphInTableCell( options = { asWidget: false, markers: {} } ) {
 	return ( modelElement, { writer, consumable, mapper } ) => {
 		if ( !modelElement.parent.is( 'element', 'tableCell' ) ) {
 			return;
@@ -123,7 +123,11 @@ export function convertParagraphInTableCell( options = {} ) {
 			return;
 		}
 
-		if ( options.asWidget ) {
+		const containedMarkers = Array.from( options.markers ).filter(
+			marker => marker.getStart().parent == modelElement || marker.getEnd().parent == modelElement
+		);
+
+		if ( options.asWidget || containedMarkers.length > 0 ) {
 			return writer.createContainerElement( 'span', { class: 'ck-table-bogus-paragraph' } );
 		} else {
 			// Additional requirement for data pipeline to have backward compatible data tables.

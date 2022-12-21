@@ -34,7 +34,6 @@ export default class FocusObserver extends DomEventObserver<'focus' | 'blur'> {
 		const document = this.document;
 
 		document.on<ViewDocumentFocusEvent>( 'focus', () => {
-			document.isFocused = true;
 			document._isFocusChanging = true;
 
 			// Unfortunately native `selectionchange` event is fired asynchronously.
@@ -46,8 +45,12 @@ export default class FocusObserver extends DomEventObserver<'focus' | 'blur'> {
 			// Using `view.change()` instead of `view.forceRender()` to prevent double rendering
 			// in a situation where `selectionchange` already caused selection change.
 			this._renderTimeoutId = setTimeout( () => {
-				document._isFocusChanging = false;
-				view.change( () => {} );
+				if ( document._isFocusChanging ) {
+					document._isFocusChanging = false;
+					document.isFocused = true;
+
+					view.change( () => {} );
+				}
 			}, 50 );
 		} );
 
@@ -56,6 +59,7 @@ export default class FocusObserver extends DomEventObserver<'focus' | 'blur'> {
 
 			if ( selectedEditable === null || selectedEditable === data.target ) {
 				document.isFocused = false;
+				document._isFocusChanging = false;
 
 				// Re-render the document to update view elements
 				// (changing document.isFocused already marked view as changed since last rendering).
@@ -69,6 +73,16 @@ export default class FocusObserver extends DomEventObserver<'focus' | 'blur'> {
 		 * @private
 		 * @member {Number} #_renderTimeoutId
 		 */
+	}
+
+	/**
+	 * TODO
+	 */
+	public flush(): void {
+		if ( this.document._isFocusChanging ) {
+			this.document._isFocusChanging = false;
+			this.document.isFocused = true;
+		}
 	}
 
 	public onDomEvent( domEvent: FocusEvent ): void {

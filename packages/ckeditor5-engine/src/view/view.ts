@@ -209,8 +209,8 @@ export default class View extends ObservableMixin() {
 
 		// Add default observers.
 		this.addObserver( MutationObserver );
-		this.addObserver( SelectionObserver );
 		this.addObserver( FocusObserver );
+		this.addObserver( SelectionObserver );
 		this.addObserver( KeyObserver );
 		this.addObserver( FakeSelectionObserver );
 		this.addObserver( CompositionObserver );
@@ -542,7 +542,7 @@ export default class View extends ObservableMixin() {
 	 */
 	public forceRender(): void {
 		this._hasChangedSinceTheLastRendering = true;
-		this.document._isFocusChanging = false;
+		this.getObserver( FocusObserver )!.flush();
 		this.change( () => {} );
 	}
 

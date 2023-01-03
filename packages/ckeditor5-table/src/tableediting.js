@@ -61,7 +61,6 @@ export default class TableEditing extends Plugin {
 		const editor = this.editor;
 		const model = editor.model;
 		const schema = model.schema;
-		const markers = model.markers;
 		const conversion = editor.conversion;
 		const tableUtils = editor.plugins.get( TableUtils );
 
@@ -131,12 +130,12 @@ export default class TableEditing extends Plugin {
 		// Duplicates code - needed to properly refresh paragraph inside a table cell.
 		conversion.for( 'editingDowncast' ).elementToElement( {
 			model: 'paragraph',
-			view: convertParagraphInTableCell( { asWidget: true, markers } ),
+			view: convertParagraphInTableCell( { asWidget: true } ),
 			converterPriority: 'high'
 		} );
 		conversion.for( 'dataDowncast' ).elementToElement( {
 			model: 'paragraph',
-			view: convertParagraphInTableCell( { asWidget: false, markers } ),
+			view: convertParagraphInTableCell( { asWidget: false } ),
 			converterPriority: 'high'
 		} );
 
@@ -194,6 +193,28 @@ export default class TableEditing extends Plugin {
 		this.listenTo( model.document, 'change:data', () => {
 			tableHeadingsRefreshHandler( model, editor.editing );
 			tableCellRefreshHandler( model, editor.editing );
+		} );
+
+		/**
+		 * Currently, because of differences between upcast & downcast representation in tableCell, there are situations where markers
+		 * change their range, which should not happen. Because of performance reasons, instead of changing casting of tableCell, the fix
+		 * is introduced directly on the marker range.
+		 * https://github.com/ckeditor/ckeditor5/issues/13053
+		 *
+		 */
+		this.listenTo( model.markers, 'update', ( event, marker, oldRange, range ) => {
+			if ( range !== null ) {
+				const element = range.start.parent;
+
+				// Change range only when marker is somehow directly inside tableCell, not enclosed in any paragraphs.
+				if ( element.name === 'tableCell' ) {
+					const start = model.createPositionFromPath( range.start.root, oldRange.start.path, oldRange.start.stickness );
+					const end = model.createPositionFromPath( range.end.root, oldRange.end.path, oldRange.end.stickness );
+
+					// Since it's a fix, we do not want to manage that particular change using operations.
+					model.markers._set( marker, model.createRange( start, end ), marker.managedUsingOperations, marker.affectsData );
+				}
+			}
 		} );
 	}
 }

@@ -161,7 +161,7 @@ Also, make sure to include the translation file after loading the CKBox library:
 
 ```html
 <script src="https://cdn.ckbox.io/CKBox/1.2.1/ckbox.js"></script>
-<script src="https://cdn.ckbox.io/CKBox/1.2.0/translations/es.js"></script>
+<script src="https://cdn.ckbox.io/CKBox/1.2.1/translations/es.js"></script>
 ```
 
 ### Providing the token URL
@@ -228,5 +228,4 @@ See the {@link features/images-overview image feature} guide to find out more ab
 
 ## Contribute
 
-The source code of the feature is available on GitHub in https://github.com/ckeditor/ckeditor5/tree/master/packages/ckeditor5-ckbox.
-
+The source code of the feature is available on GitHub in [https://github.com/ckeditor/ckeditor5/tree/master/packages/ckeditor5-ckbox](https://github.com/ckeditor/ckeditor5/tree/master/packages/ckeditor5-ckbox).

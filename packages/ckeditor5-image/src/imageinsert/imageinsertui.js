@@ -161,11 +161,7 @@ export default class ImageInsertUI extends Plugin {
 			const selectedElement = editor.model.document.selection.getSelectedElement();
 
 			if ( imageUtils.isImage( selectedElement ) ) {
-				editor.model.change( writer => {
-					writer.setAttribute( 'src', imageInsertView.imageURLInputValue, selectedElement );
-					writer.removeAttribute( 'srcset', selectedElement );
-					writer.removeAttribute( 'sizes', selectedElement );
-				} );
+				editor.execute( 'replaceImage', { image: selectedElement, source: imageInsertView.imageURLInputValue } );
 			} else {
 				editor.execute( 'insertImage', { source: imageInsertView.imageURLInputValue } );
 			}

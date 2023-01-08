@@ -11,6 +11,7 @@ import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 import Strike from '@ckeditor/ckeditor5-basic-styles/src/strikethrough';
+import Code from '@ckeditor/ckeditor5-basic-styles/src/code';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
 import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
 // import CKBox from '@ckeditor/ckeditor5-ckbox/src/ckbox';
@@ -51,10 +52,7 @@ ClassicEditor.builtinPlugins = [
     Highlight,
     Underline,
 	BlockQuote,
-	// CKBox,
-	// CKFinder,
 	// CloudServices,
-	// EasyImage,
 	Heading,
 	Image,
 	ImageCaption,
@@ -72,6 +70,7 @@ ClassicEditor.builtinPlugins = [
 	TableToolbar,
 	TextTransformation,
     HorizontalLine,
+    Code,
     CodeBlock,
     SimpleUploadAdapter,
 ];
@@ -95,6 +94,7 @@ ClassicEditor.defaultConfig = {
 			'mediaEmbed',
             '|',
 			'blockQuote',
+            'code',
             'codeBlock',
             '|',
 			'link',
@@ -122,5 +122,23 @@ ClassicEditor.defaultConfig = {
 		]
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
-	language: 'en'
+	language: 'en',
+    codeBlock: {
+        languages: [
+            { language: 'bash', label: 'Bash', class: '' },
+            { language: 'python', label: 'Python' },
+            { language: 'javascript', label: 'JavaScript' },
+            // { language: 'typescript', label: 'TypeScript' },
+            { language: 'cpp', label: 'C++' },
+            { language: 'html', label: 'HTML' },
+            { language: 'css', label: 'CSS' },
+            // { language: 'c', label: 'C' },
+            // { language: 'cs', label: 'C#' },
+            // { language: 'diff', label: 'Diff' },
+            // { language: 'java', label: 'Java' },
+            // { language: 'php', label: 'PHP' },
+            // { language: 'ruby', label: 'Ruby' },
+            { language: 'xml', label: 'XML' }
+        ],
+    },
 };

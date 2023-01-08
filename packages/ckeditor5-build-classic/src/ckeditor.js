@@ -7,7 +7,6 @@
 import ClassicEditorBase from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
 
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
-import UploadAdapter from '@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter';
 import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
@@ -36,6 +35,8 @@ import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformatio
 // import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
 import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight';
 import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
+import CodeBlock from '@ckeditor/ckeditor5-code-block/src/codeblock';
+import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
 
 
 export default class ClassicEditor extends ClassicEditorBase {}
@@ -43,7 +44,6 @@ export default class ClassicEditor extends ClassicEditorBase {}
 // Plugins to include in the build.
 ClassicEditor.builtinPlugins = [
 	Essentials,
-	UploadAdapter,
 	Autoformat,
 	Bold,
 	Italic,
@@ -71,7 +71,9 @@ ClassicEditor.builtinPlugins = [
 	Table,
 	TableToolbar,
 	TextTransformation,
-    HorizontalLine
+    HorizontalLine,
+    CodeBlock,
+    SimpleUploadAdapter,
 ];
 
 // Editor configuration.
@@ -86,18 +88,16 @@ ClassicEditor.defaultConfig = {
 			'strikethrough',
 			'highlight',
 			'|',
-			'link',
-			'|',
 			'bulletedList',
 			'numberedList',
-			'|',
-			'outdent',
-			'indent',
 			'|',
 			'uploadImage',
 			'mediaEmbed',
             '|',
 			'blockQuote',
+            'codeBlock',
+            '|',
+			'link',
 			'horizontalLine',
 			'insertTable',
 			// '|',

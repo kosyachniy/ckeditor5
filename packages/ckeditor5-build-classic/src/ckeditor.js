@@ -38,6 +38,7 @@ import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight';
 import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
 import CodeBlock from '@ckeditor/ckeditor5-code-block/src/codeblock';
 import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
+import MathType from '@wiris/mathtype-ckeditor5/src/plugin';
 
 
 export default class ClassicEditor extends ClassicEditorBase {}
@@ -73,6 +74,7 @@ ClassicEditor.builtinPlugins = [
     Code,
     CodeBlock,
     SimpleUploadAdapter,
+    MathType,
 ];
 
 // Editor configuration.
@@ -96,12 +98,12 @@ ClassicEditor.defaultConfig = {
 			'blockQuote',
             'code',
             'codeBlock',
+			'MathType',
+			// 'ChemType',
             '|',
 			'link',
 			'horizontalLine',
 			'insertTable',
-			// '|',
-			// 'MathType',
 		]
 	},
 	image: {

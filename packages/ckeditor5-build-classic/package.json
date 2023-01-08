@@ -34,7 +34,8 @@
     "@ckeditor/ckeditor5-paste-from-office": "^35.4.0",
     "@ckeditor/ckeditor5-table": "^35.4.0",
     "@ckeditor/ckeditor5-typing": "^35.4.0",
-    "@ckeditor/ckeditor5-upload": "^35.4.0"
+    "@ckeditor/ckeditor5-upload": "^35.4.0",
+    "@wiris/mathtype-ckeditor5": "^8.1.0"
   },
   "devDependencies": {
     "@ckeditor/ckeditor5-core": "^35.4.0",

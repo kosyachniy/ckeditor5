@@ -1,24 +1,13 @@
 {
-  "name": "@ckeditor/ckeditor5-build-classic",
-  "version": "35.4.0",
-  "description": "The classic editor build of CKEditor 5 – the best browser-based rich text editor.",
+  "name": "@kosyachniy/ckeditor",
+  "version": "2.0.0",
+  "description": "CKEditor 5 + math",
   "keywords": [
     "ckeditor5-build",
     "ckeditor",
-    "ckeditor5",
-    "ckeditor 5",
     "wysiwyg",
-    "rich text",
-    "editor",
-    "html",
-    "contentEditable",
-    "editing",
-    "operational transformation",
-    "ot",
-    "collaboration",
-    "collaborative",
-    "real-time",
-    "framework"
+    "math",
+    "editor"
   ],
   "main": "./build/ckeditor.js",
   "files": [
@@ -31,13 +20,11 @@
     "@ckeditor/ckeditor5-autoformat": "^35.4.0",
     "@ckeditor/ckeditor5-basic-styles": "^35.4.0",
     "@ckeditor/ckeditor5-block-quote": "^35.4.0",
-    "@ckeditor/ckeditor5-ckbox": "^35.4.0",
-    "@ckeditor/ckeditor5-ckfinder": "^35.4.0",
-    "@ckeditor/ckeditor5-cloud-services": "^35.4.0",
-    "@ckeditor/ckeditor5-easy-image": "^35.4.0",
     "@ckeditor/ckeditor5-editor-classic": "^35.4.0",
     "@ckeditor/ckeditor5-essentials": "^35.4.0",
     "@ckeditor/ckeditor5-heading": "^35.4.0",
+    "@ckeditor/ckeditor5-highlight": "*",
+    "@ckeditor/ckeditor5-horizontal-line": "^35.4.0",
     "@ckeditor/ckeditor5-image": "^35.4.0",
     "@ckeditor/ckeditor5-indent": "^35.4.0",
     "@ckeditor/ckeditor5-link": "^35.4.0",
@@ -66,13 +53,14 @@
     "node": ">=14.0.0",
     "npm": ">=5.7.1"
   },
-  "author": "CKSource (http://cksource.com/)",
+  "author": "kosyachniy",
+  "private": false,
   "license": "GPL-2.0-or-later",
   "homepage": "https://ckeditor.com/ckeditor-5",
   "bugs": "https://github.com/ckeditor/ckeditor5/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ckeditor/ckeditor5.git",
+    "url": "https://github.com/kosyachniy/ckeditor5.git",
     "directory": "packages/ckeditor5-build-classic"
   },
   "scripts": {

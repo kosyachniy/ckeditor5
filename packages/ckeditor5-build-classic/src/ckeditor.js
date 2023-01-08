@@ -11,10 +11,12 @@ import UploadAdapter from '@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapte
 import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
+import Strike from '@ckeditor/ckeditor5-basic-styles/src/strikethrough';
+import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
 import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
-import CKBox from '@ckeditor/ckeditor5-ckbox/src/ckbox';
-import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
-import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
+// import CKBox from '@ckeditor/ckeditor5-ckbox/src/ckbox';
+// import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
+// import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 import Image from '@ckeditor/ckeditor5-image/src/image';
 import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
@@ -31,7 +33,10 @@ import PictureEditing from '@ckeditor/ckeditor5-image/src/pictureediting';
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
-import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
+// import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
+import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight';
+import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
+
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -42,11 +47,14 @@ ClassicEditor.builtinPlugins = [
 	Autoformat,
 	Bold,
 	Italic,
+    Strike,
+    Highlight,
+    Underline,
 	BlockQuote,
-	CKBox,
-	CKFinder,
-	CloudServices,
-	EasyImage,
+	// CKBox,
+	// CKFinder,
+	// CloudServices,
+	// EasyImage,
 	Heading,
 	Image,
 	ImageCaption,
@@ -62,7 +70,8 @@ ClassicEditor.builtinPlugins = [
 	PictureEditing,
 	Table,
 	TableToolbar,
-	TextTransformation
+	TextTransformation,
+    HorizontalLine
 ];
 
 // Editor configuration.
@@ -73,7 +82,12 @@ ClassicEditor.defaultConfig = {
 			'|',
 			'bold',
 			'italic',
+			'underline',
+			'strikethrough',
+			'highlight',
+			'|',
 			'link',
+			'|',
 			'bulletedList',
 			'numberedList',
 			'|',
@@ -81,11 +95,13 @@ ClassicEditor.defaultConfig = {
 			'indent',
 			'|',
 			'uploadImage',
-			'blockQuote',
-			'insertTable',
 			'mediaEmbed',
-			'undo',
-			'redo'
+            '|',
+			'blockQuote',
+			'horizontalLine',
+			'insertTable',
+			// '|',
+			// 'MathType',
 		]
 	},
 	image: {
